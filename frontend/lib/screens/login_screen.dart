@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../controllers/auth_provider.dart';
-import '../models/user_model.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -84,6 +83,17 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
 
                 const Text(
+                  "Welcome Back",
+                  style: TextStyle(
+                      fontSize: 22,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold),
+                ),
+
+                SizedBox(height: 20),
+
+
+                const Text(
                   "Login",
                   style: TextStyle(
                       fontSize: 22,
@@ -119,12 +129,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(
                   width: double.infinity,
                   height: 50,
+                   
                   child: ElevatedButton(
-                    onPressed: auth.isLoading ? null : loginUser,
-                    child: auth.isLoading
-                        ? const CircularProgressIndicator(
-                            color: Colors.white)
-                        : const Text("Login"),
+                    onPressed: auth.isLoading ? CircularProgressIndicator.new : loginUser,
+                    child:  const Text("Login",style: TextStyle(),),
                   ),
                 ),
 

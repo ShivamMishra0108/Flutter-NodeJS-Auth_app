@@ -1,3 +1,4 @@
+import 'package:auth_app/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import '../models/user_model.dart';
 
@@ -14,11 +15,7 @@ class HomeScreen extends StatelessWidget {
         color: Colors.white,
         borderRadius: BorderRadius.circular(14),
         boxShadow: [
-          BoxShadow(
-            blurRadius: 6,
-            color: Colors.black12,
-            offset: Offset(0, 3),
-          )
+          BoxShadow(blurRadius: 6, color: Colors.black12, offset: Offset(0, 3)),
         ],
       ),
       child: Row(
@@ -26,10 +23,7 @@ class HomeScreen extends StatelessWidget {
           Icon(icon, color: Colors.blue),
           SizedBox(width: 12),
           Expanded(
-            child: Text(
-              "$title: $value",
-              style: TextStyle(fontSize: 15),
-            ),
+            child: Text("$title: $value", style: TextStyle(fontSize: 15)),
           ),
         ],
       ),
@@ -48,9 +42,12 @@ class HomeScreen extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.logout),
             onPressed: () {
-              Navigator.pop(context); // logout
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => LoginScreen()),
+              );
             },
-          )
+          ),
         ],
       ),
 
@@ -58,15 +55,12 @@ class HomeScreen extends StatelessWidget {
         padding: EdgeInsets.all(16),
         child: Column(
           children: [
-
             /* 🔥 Profile Card */
             Container(
               width: double.infinity,
               padding: EdgeInsets.all(20),
               decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [Colors.blue, Colors.indigo],
-                ),
+                gradient: LinearGradient(colors: [Colors.blue, Colors.indigo]),
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Column(
@@ -83,14 +77,12 @@ class HomeScreen extends StatelessWidget {
                   Text(
                     user.username,
                     style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold),
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                  Text(
-                    user.email,
-                    style: TextStyle(color: Colors.white70),
-                  ),
+                  Text(user.email, style: TextStyle(color: Colors.white70)),
                 ],
               ),
             ),
@@ -105,7 +97,6 @@ class HomeScreen extends StatelessWidget {
             infoTile(Icons.map, "State", user.state),
             infoTile(Icons.location_city, "City", user.city),
             infoTile(Icons.home, "Locality", user.locality),
-
           ],
         ),
       ),
