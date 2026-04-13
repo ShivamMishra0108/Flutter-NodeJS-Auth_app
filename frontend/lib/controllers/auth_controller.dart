@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
 import '../models/user_model.dart';
 
@@ -95,4 +96,21 @@ class AuthController {
     final body = jsonDecode(res.body);
     return body['msg'];
   }
+
+
+  // ----------------- SOCIAL LOGIN -----------------/
+  static Future<Map<String, dynamic>> socialLogin(User user) async {
+  final res = await http.post(
+    Uri.parse("$baseUrl/social-login"),
+    headers: {"Content-Type": "application/json"},
+    body: jsonEncode({
+      "email": user.email,
+      "name": user.displayName,
+      "uid": user.uid,
+      "photo": user.photoURL,
+    }),
+  );
+
+  return jsonDecode(res.body);
+}
 }

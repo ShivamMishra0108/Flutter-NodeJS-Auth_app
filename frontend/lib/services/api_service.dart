@@ -3,7 +3,6 @@ import 'package:http/http.dart' as http;
 
 class ApiService {
 
-  // ✅ Works for Android, iOS, Physical Device
   static const String baseUrl = String.fromEnvironment(
     'BASE_URL',
     defaultValue: 'http://10.0.2.2:5000/api',

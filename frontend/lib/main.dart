@@ -1,15 +1,23 @@
-import 'package:auth_app/screens/forgot_password.dart';
+import 'package:auth_app/firebase_options.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 import 'screens/login_screen.dart';
 import 'screens/signup_screen.dart';
 import 'screens/home_screen.dart';
+import 'screens/forgot_password.dart';
 
 import 'controllers/auth_provider.dart';
 import 'models/user_model.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+  options: DefaultFirebaseOptions.currentPlatform,
+);
+
   runApp(const MyApp());
 }
 
@@ -62,7 +70,6 @@ class MyApp extends StatelessWidget {
           '/forgot-password': (context) => ForgotPasswordScreen(),
         },
 
-       
         onGenerateRoute: (settings) {
           if (settings.name == '/home') {
             final user = settings.arguments as UserModel;
@@ -71,7 +78,6 @@ class MyApp extends StatelessWidget {
               builder: (_) => HomeScreen(user: user),
             );
           }
-
           return null;
         },
       ),

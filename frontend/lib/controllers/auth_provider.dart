@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../models/user_model.dart';
 import 'auth_controller.dart';
@@ -58,4 +59,18 @@ class AuthProvider extends ChangeNotifier {
     token = null;
     notifyListeners();
   }
+
+  // ------------------SOCIAL LOGIN------------------/
+  Future<void> socialLogin(User firebaseUser) async {
+  isLoading = true;
+  notifyListeners();
+
+  final res = await AuthController.socialLogin(firebaseUser);
+
+  user = UserModel.fromJson(res['user']);
+  token = res['token'];
+
+  isLoading = false;
+  notifyListeners();
+}
 }

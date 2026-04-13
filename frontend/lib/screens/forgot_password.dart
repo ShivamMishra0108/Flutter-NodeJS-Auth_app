@@ -26,7 +26,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 
   String res = await auth.forgotPassword(email.text.trim());
 
-  print("Response: $res"); // 👈 DEBUG
+  print("Response: $res"); 
 
   ScaffoldMessenger.of(context)
       .showSnackBar(SnackBar(content: Text(res)));

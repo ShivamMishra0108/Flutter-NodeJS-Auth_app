@@ -55,7 +55,6 @@ class HomeScreen extends StatelessWidget {
         padding: EdgeInsets.all(16),
         child: Column(
           children: [
-            /* 🔥 Profile Card */
             Container(
               width: double.infinity,
               padding: EdgeInsets.all(20),
@@ -89,7 +88,6 @@ class HomeScreen extends StatelessWidget {
 
             SizedBox(height: 20),
 
-            /* 🔥 Info Section */
             infoTile(Icons.phone, "Phone", user.phone),
             infoTile(Icons.person, "Role", user.role),
             infoTile(Icons.business, "Business", user.businessName),

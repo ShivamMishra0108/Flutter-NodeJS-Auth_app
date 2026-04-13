@@ -55,7 +55,7 @@ class _SignupScreenState extends State<SignupScreen> {
         .showSnackBar(SnackBar(content: Text(res)));
 
     if (res == "Success") {
-      Navigator.pop(context); // back to login
+      Navigator.pop(context);
     }
   }
 

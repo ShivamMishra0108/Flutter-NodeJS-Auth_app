@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "241792538078",
+    "project_id": "auth-app-a3188",
+    "storage_bucket": "auth-app-a3188.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:241792538078:android:75235816aaba4f29cf394f",
+        "android_client_info": {
+          "package_name": "com.shivam.auth_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "241792538078-m2cocm1i9pcstons24vof5bcfgr11uor.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.shivam.auth_app",
+            "certificate_hash": "27298e0bb2ba9ec2071d9240478c4dc116aac379"
+          }
+        },
+        {
+          "client_id": "241792538078-thkn93stqan6megsi10qldaoi7meo0u6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8RUuH3iZPPGqljTWQ0_FEtc1PI1WBpTA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "241792538078-thkn93stqan6megsi10qldaoi7meo0u6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../controllers/auth_provider.dart';
+import '../services/social_auth_service.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -90,8 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       fontWeight: FontWeight.bold),
                 ),
 
-                SizedBox(height: 20),
-
+                const SizedBox(height: 20),
 
                 const Text(
                   "Login",
@@ -112,7 +112,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     controller: password,
                     isPassword: true),
 
-                // 🔥 Forgot Password Button
                 Align(
                   alignment: Alignment.centerRight,
                   child: TextButton(
@@ -126,13 +125,58 @@ class _LoginScreenState extends State<LoginScreen> {
 
                 const SizedBox(height: 10),
 
+                /// 🔐 LOGIN BUTTON
                 SizedBox(
                   width: double.infinity,
                   height: 50,
-                   
                   child: ElevatedButton(
-                    onPressed: auth.isLoading ? CircularProgressIndicator.new : loginUser,
-                    child:  const Text("Login",style: TextStyle(),),
+                    onPressed: auth.isLoading ? null : loginUser,
+                    child: auth.isLoading
+                        ? const CircularProgressIndicator(color: Colors.white)
+                        : const Text("Login"),
+                  ),
+                ),
+
+                const SizedBox(height: 20),
+
+                /// 🔵 GOOGLE LOGIN BUTTON
+                SizedBox(
+                  width: double.infinity,
+                  height: 50,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      foregroundColor: Colors.black,
+                    ),
+                    onPressed: () async {
+                      final authProvider =
+                          Provider.of<AuthProvider>(context, listen: false);
+
+                      try {
+                        final firebaseUser =
+                            await SocialAuthService.signInWithGoogle();
+
+                        if (firebaseUser == null) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text("Login cancelled")),
+                          );
+                          return;
+                        }
+
+                        await authProvider.socialLogin(firebaseUser);
+
+                        Navigator.pushReplacementNamed(
+                          context,
+                          '/home',
+                          arguments: authProvider.user,
+                        );
+                      } catch (e) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text("Error: $e")),
+                        );
+                      }
+                    },
+                    child: const Text("Continue with Google"),
                   ),
                 ),
 

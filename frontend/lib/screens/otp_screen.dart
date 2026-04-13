@@ -30,7 +30,6 @@ class _OtpScreenState extends State<OtpScreen> {
     ScaffoldMessenger.of(context)
         .showSnackBar(SnackBar(content: Text(res)));
 
-    // ✅ If OTP verified → go to reset screen
     if (res.toLowerCase().contains("verified")) {
       Navigator.push(
         context,

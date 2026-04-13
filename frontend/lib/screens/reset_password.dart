@@ -45,7 +45,6 @@ class _ResetPasswordScreenState
     ScaffoldMessenger.of(context)
         .showSnackBar(SnackBar(content: Text(res)));
 
-    // ✅ If success → back to login
     if (res.toLowerCase().contains("successful")) {
       Navigator.pushNamedAndRemoveUntil(
         context,
