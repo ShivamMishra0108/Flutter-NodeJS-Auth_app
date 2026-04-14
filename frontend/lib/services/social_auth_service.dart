@@ -19,7 +19,6 @@ class SocialAuthService {
       final GoogleSignInAuthentication googleAuth =
           await googleUser.authentication;
 
-      // ✅ Only check accessToken
       if (googleAuth.accessToken == null) {
         throw Exception("Missing Access Token");
       }

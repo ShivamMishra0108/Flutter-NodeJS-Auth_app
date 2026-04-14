@@ -8,7 +8,7 @@ class ApiController {
     defaultValue: 'http://10.0.2.2:5000/api',
   );
 
-  /* ---------------- SIGNUP ---------------- */
+  // SIGNUP 
   static Future<Map<String, dynamic>> signup({
     required String username,
     required String email,

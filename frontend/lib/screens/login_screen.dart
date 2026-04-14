@@ -123,7 +123,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
                 const SizedBox(height: 10),
 
-                /// 🔐 LOGIN BUTTON
                 SizedBox(
                   width: double.infinity,
                   height: 50,
@@ -135,66 +134,107 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
 
-                const SizedBox(height: 20),
+                const SizedBox(height: 22),
 
                 Center(
-                  child: GestureDetector(
-                    onTap: () async {
-                      final authProvider = Provider.of<AuthProvider>(
-                        context,
-                        listen: false,
-                      );
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,spacing: 40,
+                    
+                    children: [
+                      Column(
+                        children: [
+                          GestureDetector(
+                            onTap: () async {
+                              final authProvider = Provider.of<AuthProvider>(
+                                context,
+                                listen: false,
+                              );
 
-                      try {
-                        final firebaseUser =
-                            await SocialAuthService.signInWithGoogle();
+                              try {
+                                final firebaseUser =
+                                    await SocialAuthService.signInWithGoogle();
 
-                        if (firebaseUser == null) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text("Login cancelled")),
-                          );
-                          return;
-                        }
+                                if (firebaseUser == null) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content: Text("Login cancelled"),
+                                    ),
+                                  );
+                                  return;
+                                }
 
-                        await authProvider.socialLogin(firebaseUser);
+                                await authProvider.socialLogin(firebaseUser);
 
-                        Navigator.pushReplacementNamed(
-                          context,
-                          '/home',
-                          arguments: authProvider.user,
-                        );
-                      } catch (e) {
-                        ScaffoldMessenger.of(
-                          context,
-                        ).showSnackBar(SnackBar(content: Text("Error: $e")));
-                      }
-                    },
+                                Navigator.pushReplacementNamed(
+                                  context,
+                                  '/home',
+                                  arguments: authProvider.user,
+                                );
+                              } catch (e) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(content: Text("Error: $e")),
+                                );
+                              }
+                            },
 
-                    child: Container(
-                      height: 60,
-                      width: 60,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        shape: BoxShape.circle,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black26,
-                            blurRadius: 6,
-                            offset: Offset(0, 3),
+                            child: Container(
+                              height: 60,
+                              width: 60,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                shape: BoxShape.circle,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black26,
+                                    blurRadius: 6,
+                                    offset: Offset(0, 3),
+                                  ),
+                                ],
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(12),
+                                child: Image.asset("googlelogo.png"),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          const Text(
+                            "Continue with Google",
+                            style: TextStyle(color: Colors.white,fontSize: 9),
                           ),
                         ],
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(12),
-                        child: Image.asset("googlelogo.png"),
+                      Column(
+                        children: [
+                          Container(
+                            height: 60,
+                            width: 60,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              shape: BoxShape.circle,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black26,
+                                  blurRadius: 6,
+                                  offset: Offset(0, 3),
+                                ),
+                              ],
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(12),
+                              child: Image.asset("facebook.png"),
+                            ),
+                          ),
+
+                          const SizedBox(height: 10),
+                          const Text(
+                            "Continue with Facebook",
+                            style: TextStyle(color: Colors.white,fontSize: 9),
+                          ),
+                        ],
                       ),
-                    ),
+                    ],
                   ),
-                ),
-                const SizedBox(height: 10),
-                const Text(
-                  "Continue with Google",
-                  style: TextStyle(color: Colors.white),
                 ),
 
                 const SizedBox(height: 85),
@@ -206,7 +246,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
-                
               ],
             ),
           ),

@@ -9,7 +9,6 @@ class AuthProvider extends ChangeNotifier {
 
   bool isLoading = false;
 
-  /* LOGIN */
   Future<void> login(String email, String password) async {
     isLoading = true;
     notifyListeners();
@@ -26,7 +25,6 @@ class AuthProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  /* SIGNUP */
   Future<String> signup(Map<String, dynamic> data) async {
     isLoading = true;
     notifyListeners();
@@ -39,17 +37,14 @@ class AuthProvider extends ChangeNotifier {
     return res;
   }
 
-  /* FORGOT PASSWORD */
   Future<String> forgotPassword(String email) async {
     return await AuthController.forgotPassword(email);
   }
 
-  /* VERIFY OTP */
   Future<String> verifyOtp(String email, String otp) async {
     return await AuthController.verifyOtp(email, otp);
   }
 
-  /* RESET PASSWORD */
   Future<String> resetPassword(String email, String newPassword) async {
     return await AuthController.resetPassword(email, newPassword);
   }
@@ -60,8 +55,8 @@ class AuthProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  // ------------------SOCIAL LOGIN------------------/
-  Future<void> socialLogin(User firebaseUser) async {
+  // SOCIAL LOGIN
+    Future<void> socialLogin(User firebaseUser) async {
   isLoading = true;
   notifyListeners();
 
